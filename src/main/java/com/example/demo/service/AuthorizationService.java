@@ -4,11 +4,16 @@ import com.example.demo.Authorities;
 import com.example.demo.exception.InvalidCredentials;
 import com.example.demo.exception.UnauthorizedUser;
 import com.example.demo.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Component
 public class AuthorizationService {
-    UserRepository userRepository = new UserRepository();
+    @Autowired
+    UserRepository userRepository;
 
     public List<Authorities> getAuthorities(String user, String password) {
         if (isEmpty(user) || isEmpty(password)) {
